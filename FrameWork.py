@@ -1,5 +1,5 @@
 # Building framework for validating assertions
-# @Simranjeet Singh Dua
+# author@Simranjeet Singh Dua
 class Contract(object):
     type_=None
     @classmethod
