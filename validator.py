@@ -19,7 +19,7 @@ def accepts(**accepted_arg_types):
                     try:
                         print(value,accepted_arg_types[var])
                         assert isinstance(
-                            value, accepted_arg_types[var]), f'{var} must satisfy accepted argument!!!! condition'
+                            value, accepted_arg_types[var]), f'{var} must satisfy accepted argument condition'
                     except TypeError:
                         try:
                             assert type(accepted_arg_types[var]) is type(value),f'{var} must be of type {type(accepted_arg_types[var])}'
@@ -88,7 +88,7 @@ def returns(*accepted_return_type_tuple):
         return decorator_wrapper
     return return_decorator
 
-
+#this module not works for tuples
 @accepts(b=(tuple,),c={int:(int,float)}, d=[int, ])
 @returns({int:(float,int)},[int,])
 def silly(b,c,e,d):
