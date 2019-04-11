@@ -17,11 +17,12 @@ def accepts(**accepted_arg_types):
             for var, value in sign.arguments.items():
                 if var in accepted_arg_types:
                     try:
+                        print(value,accepted_arg_types[var])
                         assert isinstance(
                             value, accepted_arg_types[var]), f'{var} must satisfy accepted argument!!!! condition'
                     except TypeError:
                         try:
-                            assert type(accepted_arg_types[var]) is type(value)
+                            assert type(accepted_arg_types[var]) is type(value),f'{var} must be of type {type(accepted_arg_types[var])}'
                             if type(accepted_arg_types[var]) is dict:
                             # k={int:(int,float),float:(PositiveInteger,),str:(str,)}
                                 try:
@@ -88,10 +89,10 @@ def returns(*accepted_return_type_tuple):
     return return_decorator
 
 
-@accepts(c={int:(int,float)}, d=[int, ])
+@accepts(b=(tuple,),c={int:(int,float)}, d=[int, ])
 @returns({int:(float,int)},[int,])
-def silly(c, d):
-    return {2:'s'},d
+def silly(b,c,e,d):
+    return {2:'s'},d,e
 
-silly({2:4.45}, [3, ])
+silly((2,3),{2:4.45}, [3, ],2)
 print('yeah that works')
